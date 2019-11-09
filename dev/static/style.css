@@ -4,10 +4,30 @@
     margin: 0 auto;
     font-size: 16px;
 }
+
 button{
     cursor: pointer;
     display: block;
-    margin: 50px auto;
+    margin: 30px auto;
     padding: 10px 20px;
 }
 
+form{
+    padding: 50px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    width: 500px;
+    margin: 50px auto;
+}
+
+form button{
+    margin: 10px auto;
+}
+
+input,
+textarea{
+    border: 1px solid #000;
+    border-radius: 2px;
+    margin-bottom: 30px;
+    width: 100%;
+}

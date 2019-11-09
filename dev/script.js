@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Newsfeed from "./components/Newsfeed";
 
-class App extends Component {
-	render() {
-		return (
-			<>
-				<Newsfeed/>
-			</>
-		);
-	}
-}
+const App = () => (
+	<>
+		<Newsfeed/>
+	</>
+);
 
 ReactDOM.render(
 	<App />,

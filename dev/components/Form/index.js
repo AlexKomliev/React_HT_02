@@ -1,31 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class Form extends Component {
-    constructor(props) {
-        super();
+const Form = ({ item = {}, addFromProps }) => {
+    const [title, setTitle] = useState(item.title || '');
+    const [text, setText] = useState(item.text || '');
 
-        this.state = {
-            title: props.item ? props.item.title : '',
-            text: props.item ? props.item.text : '',
-        };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.clearForm = this.clearForm.bind(this);
-    }
-
-    handleChange(e) {
+    const handleChange = (e) => {
         const { name, value } = e.target;
 
-        this.setState({
-            [name]: value,
-        });
-    }
+        if (name === 'title') {
+            setTitle(value);
+        } else {
+            setText(value);
+        }
+    };
 
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { title, text } = this.state;
         const date = new Date(Date.now()).toString();
 
         const data = {
@@ -35,46 +26,36 @@ class Form extends Component {
             text,
         };
 
-        this.props.addFromProps(data);
-        this.clearForm();
-    }
+        addFromProps(data);
+        setTitle('');
+        setText('');
+    };
 
-    clearForm() {
-        this.setState({
-            title: '',
-            text: '',
-        });
-    }
+    return (
+        <form
+            className={`form`}
+            onSubmit={handleSubmit}
+        >
+            <label htmlFor="title">Title</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value={title}
+                onChange={handleChange}
+            />
 
-	render() {
-        const { title, text } = this.state;
-        const { type } = this.props;
-        return (
-			<form
-              className={`form ${type ? type : ''}`}
-              onSubmit={this.handleSubmit}
-            >
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={title}
-                  onChange={this.handleChange}
-                />
+            <label htmlFor="text">News content</label>
+            <textarea
+                name="text"
+                id="text"
+                value={text}
+                onChange={handleChange}
+            />
 
-                <label htmlFor="text">Comment</label>
-                <textarea
-                  name="text"
-                  id="text"
-                  value={text}
-                  onChange={this.handleChange}
-                />
-
-                <button className="button">post</button>
-            </form>
-		);
-	}
-}
+            <button className="button">post</button>
+        </form>
+    );
+};
 
 export default Form;
