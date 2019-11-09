@@ -40,7 +40,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			inject: false,
-			template: './dev/static/index.html',
+			template: './dev/template/index.html',
 			filename: "index.html"
 		})
 	]
