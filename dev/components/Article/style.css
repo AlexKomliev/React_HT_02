@@ -1,0 +1,9 @@
+.article_title{
+    margin-bottom: 5px;
+}
+
+.article_date{
+    font-size: 14px;
+    margin: 0 0 15px;
+    font-style: italic;
+}

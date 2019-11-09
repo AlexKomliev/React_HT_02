@@ -1,12 +1,14 @@
 const path = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: './dev/script.js',
 	output: {
 		path: path.resolve(__dirname, 'site'),
-		filename: 'bundle.js'
+		filename: 'bundle.[chunkhash].js'
 	},
 	mode: 'development',
 	devServer: {
@@ -24,15 +26,22 @@ module.exports = {
 						presets: ['@babel/preset-env', '@babel/preset-react']
 					}
 				}
+			},
+			{
+				test: /\.css$/,
+				use: [MiniCSSExtractPlugin.loader, 'css-loader']
 			}
 		]
 	},
 	plugins:[
-		new CopyWebpackPlugin([
-			{
-				from: path.resolve('./dev/static'),
-				to: path.resolve('./site')
-			}
-		])
+		new WebpackMd5Hash(),
+		new MiniCSSExtractPlugin({
+			filename: 'style.[chunkhash].css'
+		}),
+		new HtmlWebpackPlugin({
+			inject: false,
+			template: './dev/static/index.html',
+			filename: "index.html"
+		})
 	]
 };

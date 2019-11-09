@@ -1,13 +1,15 @@
 import React from 'react';
 
+import './style.css';
+
 const Article = ({ title, date, text }) =>(
     <div className="article">
         <h3 className="article_title">
             {title}
         </h3>
-        <em className="article_date">
+        <p className="article_date">
             {date}
-        </em>
+        </p>
         <div className="article_text">
             {text}
         </div>

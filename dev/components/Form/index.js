@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './style.css';
+
 const Form = ({ item = {}, addFromProps }) => {
     const [title, setTitle] = useState(item.title || '');
     const [text, setText] = useState(item.text || '');
