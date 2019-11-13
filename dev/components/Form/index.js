@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './style.css';
+import style from  './style.css';
 
 const Form = ({ item = {}, addFromProps }) => {
     const [title, setTitle] = useState(item.title || '');
@@ -35,11 +35,12 @@ const Form = ({ item = {}, addFromProps }) => {
 
     return (
         <form
-            className={`form`}
+            className={style.form}
             onSubmit={handleSubmit}
         >
             <label htmlFor="title">Title</label>
             <input
+                className={style.input}
                 type="text"
                 id="title"
                 name="title"
@@ -49,13 +50,14 @@ const Form = ({ item = {}, addFromProps }) => {
 
             <label htmlFor="text">News content</label>
             <textarea
+                className={style.textarea}
                 name="text"
                 id="text"
                 value={text}
                 onChange={handleChange}
             />
 
-            <button className="button">post</button>
+            <button className={style.button}>post</button>
         </form>
     );
 };

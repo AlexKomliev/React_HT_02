@@ -1,16 +1,17 @@
 import React from 'react';
 
-import './style.css';
+import style from './style.css';
 
 const Article = ({ title, date, text }) =>(
-    <div className="article">
-        <h3 className="article_title">
+
+    <div className={style.article}>
+        <h3 className={style.article_title}>
             {title}
         </h3>
-        <p className="article_date">
+        <p className={style.article_date}>
             {date}
         </p>
-        <div className="article_text">
+        <div className={style.article_text}>
             {text}
         </div>
     </div>
